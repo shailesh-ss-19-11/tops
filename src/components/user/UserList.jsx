@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { userdata } from "../../FakeData";
-const UserList = () => {
-    console.log(userdata)
-    const [listOfUser, setlistOfUser] = useState(userdata);
+const UserList = (props) => {
+    console.log(props);
+    
     return (
         <div>
             <table class="table">
@@ -21,11 +20,11 @@ const UserList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {listOfUser.length > 0 ?
-                        listOfUser.map((user,index) => {
+                    {props.listOfUser.length > 0 ?
+                        props.listOfUser.map((user,index) => {
                             return (
                                 <tr>
-                                    <td>{index+1}</td>
+                                    <td>{user.user_id}</td>
                                     <td>{user.first_name}</td>
                                     <td>{user.last_name}</td>
                                     <td>{user.age}</td>
@@ -35,7 +34,7 @@ const UserList = () => {
                                     <td>{user.phone_number}</td>
                                     <td>{user.birthdate}</td>
                                     <td><button className="btn btn-primary m-1">edit</button>
-                                    <button className="btn btn-danger m-1">delete</button></td>
+                                    <button className="btn btn-danger m-1" onClick={()=>props.deleteuser(user.user_id)}>delete</button></td>
                                     
                                 </tr>
                             )

@@ -1,9 +1,18 @@
 import { useState } from "react";
+import EditUser from "./EditUser";
 const UserList = (props) => {
-    console.log(props);
-    
+    const [openEdit, setopenEdit] = useState(false);
+    const [user, setuser] = useState({});
+
+    const handleRow =(user)=>{
+        setuser(user)
+        setopenEdit(true)
+    }
     return (
         <div>
+            <div className="container">
+                {openEdit ? <EditUser user={user} updateUser={props.updateUser} setopenEdit={setopenEdit}/> : null}
+            </div>
             <table class="table">
                 <thead>
                     <tr>
@@ -21,7 +30,7 @@ const UserList = (props) => {
                 </thead>
                 <tbody>
                     {props.listOfUser.length > 0 ?
-                        props.listOfUser.map((user,index) => {
+                        props.listOfUser.map((user, index) => {
                             return (
                                 <tr>
                                     <td>{user.user_id}</td>
@@ -33,9 +42,9 @@ const UserList = (props) => {
                                     <td>{user.postal_code}</td>
                                     <td>{user.phone_number}</td>
                                     <td>{user.birthdate}</td>
-                                    <td><button className="btn btn-primary m-1">edit</button>
-                                    <button className="btn btn-danger m-1" onClick={()=>props.deleteuser(user.user_id)}>delete</button></td>
-                                    
+                                    <td><button className="btn btn-primary m-1" onClick={() => handleRow(user)}>edit</button>
+                                        <button className="btn btn-danger m-1" onClick={() => props.deleteuser(user.user_id)}>delete</button></td>
+
                                 </tr>
                             )
                         }) : null}

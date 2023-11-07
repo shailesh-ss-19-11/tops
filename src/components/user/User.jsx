@@ -10,6 +10,16 @@ const User = () => {
         setlistOfUser(exceptDeleted)
     }
 
+    const updateUser = (data)=>{
+        console.log(data)
+        const newuserlist = [...listOfUser];
+        const obj = newuserlist.find((user)=>user.user_id===data.user_id);
+        const index = newuserlist.indexOf(obj);
+        newuserlist.splice(index,1,data);
+        console.log(listOfUser)
+        setlistOfUser(newuserlist);
+    }
+
     return (
         <div style={{ textAlign: "center" }}>
             {/* <button className="btn btn-primary" onClick={() => setcount(count + 1)}>+</button>
@@ -17,7 +27,7 @@ const User = () => {
             <button className="btn btn-danger" onClick={() => setcount(count - 1)}>-</button>
             <button className="btn btn-danger" onClick={() => setname("tanushree")}>Change Name</button>
             <h1>{name}</h1> */}
-            <UserList listOfUser={listOfUser} deleteuser={deleteUser} />
+            <UserList listOfUser={listOfUser} deleteuser={deleteUser} updateUser={updateUser}/>
         </div>
     )
 }

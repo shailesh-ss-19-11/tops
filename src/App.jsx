@@ -6,6 +6,7 @@ import Home from "./components/site/Home";
 import About from "./components/site/About";
 import Contact from "./components/site/Contact";
 import Products from "./components/products/Products";
+import UpdateProducts from "./components/products/UpdateProducts";
 const App =()=>{
     return(
         <>
@@ -16,6 +17,7 @@ const App =()=>{
             <Route path="/about" Component={About}/>
             <Route path="/users" Component={User}/>
             <Route path="/products" Component={Products}/>
+            <Route path="/update-product/:id" Component={UpdateProducts}/>
             <Route path="/" Component={Home}/>
         </Routes>
        {/* <User/> */}

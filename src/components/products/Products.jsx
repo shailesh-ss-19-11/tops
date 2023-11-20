@@ -37,11 +37,32 @@ const Products = () => {
         })
     }
 
+    const search = (str)=>{
+        console.log()
+        let newkeystr = str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
+        
+        let products = [...productList];
+        let newproducts = products.filter((prod)=>prod.product_name.includes(newkeystr));
+        console.log(newproducts)
+        setproductList(newproducts)
+        // if(newproducts.length>0){
+        // }
+        if(str==""){
+            getproductList();
+        }
+    }
+
     const paginate = (count) => {
-        console.log(count)//1
-        const listitems = productList.slice(0,8)
-        console.log(listitems)
-        setproductList(listitems)
+        setloading(true);
+        axios.get(`${BACKENDURL}?_page=${count}&_limit=8`).then((resp) => {
+            console.log(resp)
+            if (resp.status === 200) {
+                setloading(false);
+                setproductList(resp.data)
+            } else {
+                setproductList([])
+            }
+        })
     }
 
     return (
@@ -55,6 +76,7 @@ const Products = () => {
                     deleteProduct={deleteProduct}
                     paginate={paginate}
                     counts={counts}
+                    search={search}
                 />}
         </div>
     );

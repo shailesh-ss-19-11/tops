@@ -9,7 +9,6 @@ const AddUser = (props) => {
         if (e.target.name == "birthdate") {
             tempObj[e.target.name] = moment(new Date(e.target.value)).format("DD/MM/YYYY")
             setforminputs(tempObj);
-
         } else {
             tempObj[e.target.name] = e.target.value
             setforminputs(tempObj);

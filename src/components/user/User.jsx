@@ -46,7 +46,7 @@ const User = () => {
             <button className="btn btn-danger" onClick={() => setcount(count - 1)}>-</button>
             <button className="btn btn-danger" onClick={() => setname("tanushree")}>Change Name</button>
             <h1>{name}</h1> */}
-            <UserList listOfUser={listOfUser} deleteuser={deleteUser} updateUser={updateUser}/>
+            <UserList  listOfUser={listOfUser} deleteuser={deleteUser} updateUser={updateUser}/>
         </div>
     )
 }

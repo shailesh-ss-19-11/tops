@@ -3,15 +3,24 @@ import EditUser from "./EditUser";
 const UserList = (props) => {
     const [openEdit, setopenEdit] = useState(false);
     const [user, setuser] = useState({});
-
-    const handleRow =(user)=>{
+    const [showmodal, setshowmodal] = useState(false);
+    const handleRow = (user) => {
+        console.log(user,"user")
+        setuser({})
         setuser(user)
+        setshowmodal(true)
         setopenEdit(true)
     }
+
+    const closeModal = ()=>{
+        setuser({})
+        setshowmodal(false)
+    }
+    console.log(user,"bbb")
     return (
         <div>
             <div className="container">
-                {openEdit ? <EditUser user={user} updateUser={props.updateUser} setopenEdit={setopenEdit}/> : null}
+                {openEdit ? <EditUser closeModal={closeModal} showmodal={showmodal} user={user} updateUser={props.updateUser} setopenEdit={setopenEdit} setuser={setuser}/> : null}
             </div>
             <table class="table">
                 <thead>

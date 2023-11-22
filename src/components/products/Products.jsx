@@ -37,18 +37,28 @@ const Products = () => {
         })
     }
 
-    const search = (str)=>{
-        console.log()
-        let newkeystr = str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
-        
-        let products = [...productList];
-        let newproducts = products.filter((prod)=>prod.product_name.includes(newkeystr));
-        console.log(newproducts)
-        setproductList(newproducts)
-        // if(newproducts.length>0){
+    const search = (str) => {
+        // let newkeystr = str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
+        // let products = [...productList];
+        // let newproducts = products.filter((prod)=>prod.product_name.includes(newkeystr));
+        // console.log(newproducts)
+        // setproductList(newproducts)
+        // // if(newproducts.length>0){
+        // // }
+        // if(str==""){
+        //     getproductList();
         // }
-        if(str==""){
+        if (str == "") {
             getproductList();
+        } else {
+            axios.get(`${BACKENDURL}?product_name=${str}`).then((resp) => {
+                console.log(resp)
+                if (resp.status === 200) {
+                    setproductList(resp.data);
+                } else {
+                    setproductList([]);
+                }
+            })
         }
     }
 

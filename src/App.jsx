@@ -22,9 +22,11 @@ const UpdateProducts = React.lazy(() => import('./components/products/UpdateProd
 const App = () => {
     return (
         <>
-            <Suspense fallback={<div className='d-flex justify-content-center align-item-center' style={{ marginTop: "10%" }}>
-                <Loader />
-            </div>}>
+            <Suspense fallback={
+                <div className='d-flex justify-content-center align-item-center' style={{ marginTop: "10%" }}>
+                    <Loader />
+                </div>
+            }>
                 <Header />
                 <Routes>
                     <Route path="/service" Component={Service} />

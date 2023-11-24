@@ -20,7 +20,6 @@ class About extends Component {
     }
 
     componentDidUpdate(prevprops, prevstate) {
-
         console.log(prevstate)
         if (prevstate.count === 5) {
             alert("componentDidUpdate called")
@@ -30,6 +29,7 @@ class About extends Component {
     decrease = () => {
         this.setState({ count: this.state.count - 1 })
     }
+    
     render() {
         alert("render called")
         return (
